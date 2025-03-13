@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Catch - Ocean Fresh</title>
+    <style>
+        :root {
+            --primary-blue: #1a5c7a;
+            --accent-teal: #2ca6a4;
+            --fresh-green: #7dce94;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f8fbfe;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .catch-highlights {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+
+        .catch-board {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .catch-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .catch-card::before {
+            content: 'FRESH';
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            background: var(--fresh-green);
+            color: white;
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-size: 0.9rem;
+        }
+
+        .catch-category {
+            color: var(--accent-teal);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .catch-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 2px solid #eee;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .catch-timeline {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+
+        .timeline-step {
+            display: flex;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        .timeline-icon {
+            font-size: 1.8rem;
+            color: var(--accent-teal);
+            margin-right: 1.5rem;
+        }
+
+        .quality-badge {
+            background: linear-gradient(45deg, var(--primary-blue), var(--accent-teal));
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Today's Ocean Harvest</h1>
+        <p>Quality You Can Taste, Freshness You Can Trust</p>
+    </header>
+
+    <div class="catch-highlights">
+        <div class="catch-board">
+            <div class="catch-card">
+                <div class="catch-category">Premium White Fish</div>
+                <h3>Morning Catch Available</h3>
+                <p>Selection of our finest mild-flavored catches</p>
+                <div class="catch-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">8+</div>
+                        <div class="stat-label">Varieties</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">4h</div>
+                        <div class="stat-label">Avg. Catch Time</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="catch-card">
+                <div class="catch-category">Rich Oily Fish</div>
+                <h3>Deep Sea Selection</h3>
+                <p>Nutrient-rich options available whole or filleted</p>
+                <div class="catch-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">5+</div>
+                        <div class="stat-label">Options</div>
+                    </div>
+                    <div class="stat-value">6h</div>
+                    <div class="stat-label">Max. Shelf Time</div>
+                </div>
+            </div>
+
+            <div class="catch-card">
+                <div class="catch-category">Shellfish & Crustaceans</div>
+                <h3>Live Tank Specials</h3>
+                <p>Fresh from our temperature-controlled tanks</p>
+                <div class="catch-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">12+</div>
+                        <div class="stat-label">Species</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">24h</div>
+                        <div class="stat-label">Live Guarantee</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quality-badge">
+            <h2>Our Freshness Promise</h2>
+            <p>Every product meets our strict quality standards:</p>
+            <div class="timeline-step">
+                <div class="timeline-icon">🌊</div>
+                <div>
+                    <h4>Direct from Source</h4>
+                    <p>Partnered with local fishing communities</p>
+                </div>
+            </div>
+            
+            <div class="timeline-step">
+                <div class="timeline-icon">⏱️</div>
+                <div>
+                    <h4>Rapid Processing</h4>
+                    <p>Never more than 6 hours from sea to market</p>
+                </div>
+            </div>
+
+            <div class="timeline-step">
+                <div class="timeline-icon">🌡️</div>
+                <div>
+                    <h4>Optimal Storage</h4>
+                    <p>Maintained at 0-2°C from boat to counter</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="catch-timeline">
+            <h2>Today's Catch Schedule</h2>
+            <div class="timeline-step">
+                <div class="timeline-icon">🕒</div>
+                <div>
+                    <h4>Pre-Dawn</h4>
+                    <p>Local fleet returns with overnight catch</p>
+                </div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-icon">🕗</div>
+                <div>
+                    <h4>Morning</h4>
+                    <p>Quality inspection & preparation</p>
+                </div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-icon">🕙</div>
+                <div>
+                    <h4>Market Open</h4>
+                    <p>Fresh products available to customers</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

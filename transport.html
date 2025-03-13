@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Fish Transportation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .transport-header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://media.istockphoto.com/id/1430050476/photo/raw-fish-isolated-on-white-and-banana-leaf.jpg?s=2048x2048&w=is&k=20&c=HB-rWVnRbIutn0DiB90-F4tVKiykMcJpWnXusXTAyAk=');
+            height: 60vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .transport-header::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(transparent, #f8f9fa);
+        }
+
+        .transport-title {
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: titleFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .transport-content {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .coverage-map {
+            max-width: 1000px;
+            margin: 3rem auto;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .map-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .map-image:hover {
+            transform: scale(1.05);
+        }
+
+        .delivery-process {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 4rem 0;
+            flex-wrap: wrap;
+        }
+
+        .process-step {
+            width: 200px;
+            text-align: center;
+            position: relative;
+        }
+
+        .process-step::before {
+            content: '➔';
+            position: absolute;
+            right: -35px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .process-step:last-child::before {
+            display: none;
+        }
+
+        .testimonial-slider {
+            background: #2c3e50;
+            color: white;
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+        }
+
+        .fish-animation {
+            position: fixed;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            opacity: 0.1;
+            animation: swim 20s linear infinite;
+        }
+
+        @keyframes swim {
+            0% { transform: translateX(100vw) rotate(0deg); }
+            100% { transform: translateX(-100vw) rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+    <header class="transport-header">
+        <div>
+            <h1 class="transport-title">Fresh Fish Delivery</h1>
+            <p>From Ocean to Your Doorstep in Record Time</p>
+        </div>
+        <img src="https://www.frontiersin.org/files/Articles/619695/fmars-08-619695-HTML-r1/image_m/fmars-08-619695-g001.jpg" class="fish-animation" alt="fish">
+    </header>
+
+    <div class="transport-content">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🚚</div>
+                <h3>24-Hour Delivery</h3>
+                <p>Guaranteed fresh delivery within 24 hours of catch</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">❄️</div>
+                <h3>Cryo-Packaging</h3>
+                <p>Advanced vacuum sealing with ice-cool technology</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Live Tracking</h3>
+                <p>Real-time GPS tracking of your delivery</p>
+            </div>
+        </div>
+
+        <div class="coverage-map">
+            <img src="https://www.mapsofindia.com/images2/india-road-map.jpg" 
+                 class="map-image" 
+                 alt="Delivery Coverage Map"
+                 onmouseover="this.src='https://www.frontiersin.org/files/Articles/619695/fmars-08-619695-HTML-r1/image_m/fmars-08-619695-g001.jpg'"
+                 onmouseout="this.src='https://www.frontiersin.org/files/Articles/619695/fmars-08-619695-HTML-r1/image_m/fmars-08-619695-g001.jpg'">
+        </div>
+
+        <div class="delivery-process">
+            <div class="process-step">
+                <h3>1. Catch</h3>
+                <p>Fresh from local fishermen</p>
+            </div>
+            <div class="process-step">
+                <h3>2. Process</h3>
+                <p>Cleaned & inspected</p>
+            </div>
+            <div class="process-step">
+                <h3>3. Pack</h3>
+                <p>Vacuum-sealed & chilled</p>
+            </div>
+            <div class="process-step">
+                <h3>4. Deliver</h3>
+                <p>To your doorstep</p>
+            </div>
+        </div>
+
+        <div class="testimonial-slider">
+            <h2 style="text-align: center; margin-bottom: 2rem;">What Our Customers Say</h2>
+            <div class="testimonials">
+                <blockquote>"The fish arrived so fresh, it felt like I bought it directly from the market!"</blockquote>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add automatic testimonial slider
+        const testimonials = [
+            "Best fish delivery service in the country!",
+            "Packaging was amazing - ice was still cold!",
+            "Regular customer for 2 years - never disappointed!"
+        ];
+
+        let currentTestimonial = 0;
+        const testimonialElement = document.querySelector('blockquote');
+
+        setInterval(() => {
+            testimonialElement.style.opacity = 0;
+            setTimeout(() => {
+                testimonialElement.textContent = `"${testimonials[currentTestimonial]}"`;
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                testimonialElement.style.opacity = 1;
+            }, 500);
+        }, 3000);
+    </script>
+</body>
+</html>

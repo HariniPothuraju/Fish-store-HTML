@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean's Bounty - Fish Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a5276;
+            --secondary-color: #2e86c1;
+            --accent-color: #f39c12;
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: var(--text-color);
+        }
+
+        /* Header Styles */
+        .shop-header {
+            background: linear-gradient(rgba(26, 82, 118, 0.9), rgba(26, 82, 118, 0.9)),
+                        url('https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .shop-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1.5rem;
+            background: var(--primary-color);
+        }
+
+        .shop-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .shop-nav a:hover {
+            background: var(--accent-color);
+        }
+
+        /* Main Content Container */
+        .shop-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Shop Intro Section */
+        .shop-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin: 4rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .shop-story h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+        }
+
+        .shop-story p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .shop-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .highlight-card {
+            padding: 1.5rem;
+            background: #f5f7fa;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .highlight-card i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Fresh Catch Section */
+        .daily-catch {
+            margin: 4rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .catch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .catch-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .catch-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .catch-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .catch-info {
+            padding: 1rem;
+            background: white;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 4rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .contact-info {
+            padding: 2rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 10px;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .shop-intro,
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+
+            .shop-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .shop-nav {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="shop-header">
+        <h1>Ocean's Bounty Fish Shop</h1>
+        <p>Since 1995 - Serving Freshness Daily</p>
+    </header>
+
+    <nav class="shop-nav">
+        <a href="file:///C:/Users/HP/Desktop/HTML%20college/Home.html">Home</a>
+        <a href="file:///C:/Users/HP/Desktop/HTML%20college/transport.html">Transport</a>
+        <a href="file:///C:/Users/HP/Desktop/HTML%20college/contact.html#">Contact</a>
+    </nav>
+
+    <main class="shop-container">
+        <!-- Shop Introduction Section -->
+        <section class="shop-intro">
+            <div class="shop-story">
+                <h2>Our Fish Story</h2>
+                <p>For three generations, our family has been dedicated to bringing the freshest catch from local waters to your table. What began as a small fishing boat operation has grown into a trusted community hub for premium seafood.</p>
+                <p>We partner directly with sustainable fisheries and local fishermen to ensure quality while protecting marine ecosystems.</p>
+            </div>
+            <div class="shop-highlights">
+                <div class="highlight-card">
+                    <i class="fas fa-anchor"></i>
+                    <h3>Daily Catch</h3>
+                    <p>Fresh from local waters every morning</p>
+                </div>
+                <div class="highlight-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Sustainable</h3>
+                    <p>Eco-friendly fishing practices</p>
+                </div>
+                <div class="highlight-card">
+                    <i class="fas fa-award"></i>
+                    <h3>Quality Certified</h3>
+                    <p>ISO 9001:2015 certified</p>
+                </div>
+                <div class="highlight-card">
+                    <i class="fas fa-truck"></i>
+                    <h3>Fast Delivery</h3>
+                    <p>Same-day delivery available</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daily Catch Section -->
+        <section class="daily-catch">
+            <h2>Today's Fresh Catch</h2>
+            <div class="catch-grid">
+                <div class="catch-card">
+                    <img src="salmon.jpg" alt="Fresh Salmon">
+                    <div class="catch-info">
+                        <h3>Atlantic Salmon</h3>
+                        <p>₹899/kg</p>
+                    </div>
+                </div>
+                <!-- Add more catch cards -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <div class="contact-form">
+                <h2>Get in Touch</h2>
+                <form>
+                    <input type="text" placeholder="Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="tel" placeholder="Phone">
+                    <textarea rows="5" placeholder="Message"></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <h3>Visit Us</h3>
+                <p>📍 Fish Market Road, Coastal City</p>
+                <p>⏰ Open Daily: 6 AM - 8 PM</p>
+                <p>📞 +91 98765 43210</p>
+                <p>📧 contact@oceansbounty.com</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Add interactive features here
+        document.querySelectorAll('nav a').forEach(link => {
+            if(link.href === window.location.href) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

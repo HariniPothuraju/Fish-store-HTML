@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Fish Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #1a5276;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            background-color: #7fb3d5;
+            padding: 1rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .transport-info {
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .transport-info:hover {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .search-container {
+            padding: 1rem;
+            text-align: center;
+            background-color: #f4f4f4;
+            position: relative;
+        }
+
+        #search-input {
+            padding: 0.5rem;
+            width: 300px;
+            max-width: 90%;
+        }
+
+        .clear-search {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #999;
+            display: none;
+        }
+
+        .clear-search:hover {
+            color: #666;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .product-card {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            color: #2e86c1;
+            margin: 0.5rem 0;
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0.5rem 0;
+            min-height: 40px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: white;
+            margin: 2% auto;
+            padding: 2rem;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal img {
+            max-width: 100%;
+            max-height: 400px;
+            margin: 1rem 0;
+        }
+
+        .cart {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+            padding: 1rem;
+            transition: 0.3s;
+        }
+
+        .cart.active {
+            right: 0;
+        }
+
+        .cart-items {
+            height: 80%;
+            overflow-y: auto;
+        }
+
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        footer {
+            background-color: #1a5276;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #e74c3c;
+            font-size: 1.2rem;
+            margin: 2rem;
+            display: none;
+        }
+
+        button {
+            background-color: #1a5276;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            margin: 0.5rem 0;
+        }
+
+        button:hover {
+            background-color: #154360;
+        }
+
+        @media (max-width: 480px) {
+            .clear-search {
+                right: 10px;
+        /* ... (previous styles remain same) ... */
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 1rem;
+            background-color: #f4f4f4;
+            align-items: center;
+        }
+
+        .search-group {
+            position: relative;
+            display: inline-block;
+        }
+
+        #search-input {
+            padding: 0.5rem;
+            width: 300px;
+            max-width: 90%;
+            padding-right: 35px;
+        }
+
+        .clear-search {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #999;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        .clear-search:hover {
+            color: #666;
+        }
+
+        /* ... (rest of styles remain same) ... */        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Indian Freshwater Fish</h1>
+        <p>Premium Quality & Fresh Catch</p>
+    </header>
+<nav>
+    <a href="#" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</a>
+    <a href="">Home</a>
+    <a href="transport.html">🚚 Transport</a>
+    <a href="file:///C:/Users/HP/Desktop/HTML%20college/store.html" onclick="showShopModal()">Shop</a>
+    <a href="file:///C:/Users/HP/Desktop/HTML%20college/contact.html#" onclick="showContactModal()">Contact</a>
+</nav>
+<div class="search-container">
+        <div class="search-group">
+            <input type="text" id="search-input" placeholder="Search fish..." onkeyup="filterProducts()">
+            <button class="clear-search" id="clear-search" onclick="clearSearch()">✕</button>
+        </div>
+    </div>
+
+
+
+    <div class="products" id="products-container"></div>
+    <div class="no-results" id="no-results">🐟 Fish not available! Please try another search.</div>
+
+    <!-- Modals -->
+    <div id="fish-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <img id="modal-image" src="" alt="">
+            <h2 id="modal-name"></h2>
+            <p id="modal-description"></p>
+            <p class="price">₹<span id="modal-price"></span></p>
+        </div>
+    </div>
+
+    <div class="cart" id="cart">
+        <h2>Shopping Cart</h2>
+        <div class="cart-items" id="cart-items"></div>
+        <p class="cart-total">Total: ₹<span id="cart-total">0.00</span></p>
+        <button onclick="checkout()">Checkout</button>
+        <button onclick="clearCart()">Clear Cart</button>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: "Rohu",
+                price: 299,
+                image: "https://capon.in/media/2022/04/fresh-rohu-fish-capon.jpg",
+                description: "Popular carp species, staple in Indian cuisine. Freshwater fish with firm white flesh."
+            },
+            {
+                id: 2,
+                name: "Catla",
+                price: 349,
+                image: "https://www.nuste.in/cdn/shop/files/rohufish1.jpg?v=1710501014",
+                description: "Large freshwater fish, known for its large head and silver scales. Rich in omega-3."
+            },
+            {
+                id: 3,
+                name: "Hilsa",
+                price: 899,
+                image: "https://as1.ftcdn.net/v2/jpg/09/71/05/50/1000_F_971055041_vZnu2ICkrHUlzAjwRhNY2SDjId21n6Zt.jpg",
+                description: "National fish of Bangladesh, prized for its tender meat and distinct flavor."
+            },
+            {
+                id: 4,
+                name: "Mrigal",
+                price: 249,
+                image: "https://www.adnanhalal.com/wp-content/uploads/2019/03/mrigal.jpg",
+                description: "Bottom-feeding carp, popular in South Indian states. Lean meat with mild flavor."
+            },
+            {
+                id: 5,
+                name: "Tilapia",
+                price: 199,
+                image: "https://i0.wp.com/freshprotino.com/wp-content/uploads/2021/03/tilapiaaaa-1.jpg?fit=400%2C515&ssl=1",
+                description: "Fast-growing species, ideal for farming. Mild taste and versatile cooking options."
+            },
+            {
+                id: 6,
+                name: "Common Carp",
+                price: 179,
+                image: "https://static1.bigstockphoto.com/8/4/4/large1500/448812533.jpg",
+                description: "Hardy fish with earthy flavor. Popular in North Indian water bodies."
+            },
+        // New additions
+        {
+            id: 7,
+            name: "Indian Salmon",
+            price: 1299,
+            image: "https://www.nuste.in/cdn/shop/files/indian_salmon_edited_3.jpg?v=1710414753",
+            description: "Premium seawater fish with rich flavor. Also known as Rawas."
+        },
+        {
+            id: 8,
+            name: "Tuna",
+            price: 999,
+            image: "https://thefishhub.in/storage/whatsapp-image-2024-06-01-at-094103-38980fcb.jpg",
+            description: "Deep sea fish rich in proteins. Imported fresh daily."
+        },
+        {
+            id: 9,
+            name: "Basa",
+            price: 399,
+            image: "https://spencermeatshop.com/wp-content/uploads/2020/12/Fresh-Frozen-Food-Basa-Fish-1Kg.jpg",
+            description: "Mild-flavored white fish popular in continental cuisine."
+        },
+        {
+            id: 10,
+            name: "Kingfish",
+            price: 799,
+            image: "https://www.nuste.in/cdn/shop/files/Kingfish1.jpg?v=1711966271&width=1680",
+            description: "Meaty fish perfect for grilling. Locally sourced from coastal regions."
+        },
+        {
+            id: 11,
+            name: "Pomfret",
+            price: 699,
+            image: "https://freshkerala.co.in/wp-content/uploads/2020/10/Pomfret-white-fry-cut-324x324.jpg",
+            description: "Premium silver pomfret with delicate flavor. Available in black and white varieties."
+        },
+        {
+            id: 12,
+            name: "Pearl Spot",
+            price: 499,
+            image: "https://st2.depositphotos.com/43080468/46910/i/1600/depositphotos_469108930-stock-photo-pearl-spot-fish-karimeen-decorated.jpg",
+            description: "Kerala's signature fish with distinct pearl-like spots."
+        }
+        // ... keep existing other fish entries ...
+    
+        ];
+
+        let cart = [];
+        let cartVisible = false;
+
+        function initStore() {
+            const container = document.getElementById('products-container');
+            container.innerHTML = '';
+            
+            products.sort((a, b) => a.name.localeCompare(b.name)).forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p class="product-description">${product.description}</p>
+                    <p class="price">₹${product.price.toFixed(2)}</p>
+                    <input type="number" value="1" min="1" class="quantity">
+                    <button onclick="addToCart(this)" 
+                        data-id="${product.id}" 
+                        data-name="${product.name}" 
+                        data-price="${product.price}">Add to Cart</button>
+                `;
+                
+                card.querySelector('img').addEventListener('click', () => showModal(product));
+                card.querySelector('h3').addEventListener('click', () => showModal(product));
+                
+                container.appendChild(card);
+            });
+        }
+
+        function showModal(product) {
+            const modal = document.getElementById('fish-modal');
+            document.getElementById('modal-image').src = product.image;
+            document.getElementById('modal-name').textContent = product.name;
+            document.getElementById('modal-price').textContent = product.price.toFixed(2);
+            document.getElementById('modal-description').textContent = product.description;
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('fish-modal').style.display = 'none';
+        }
+
+        function filterProducts() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const productCards = document.getElementsByClassName('product-card');
+            const clearBtn = document.getElementById('clear-search');
+            let foundCount = 0;
+            
+            clearBtn.style.display = searchTerm ? 'block' : 'none';
+
+            Array.from(productCards).forEach(card => {
+                const fishName = card.querySelector('h3').textContent.toLowerCase();
+                if(fishName.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    foundCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById('no-results').style.display = 
+                (foundCount === 0 && searchTerm !== '') ? 'block' : 'none';
+        }
+
+	function filterProducts() {
+    // ... existing code ...
+    const clearBtn = document.getElementById('clear-search');
+    clearBtn.style.display = searchTerm ? 'block' : 'none';
+}
+
+function clearSearch() {
+    document.getElementById('search-input').value = '';
+    filterProducts();
+}
+
+        function toggleCart() {
+            const cartElement = document.getElementById('cart');
+            cartElement.classList.toggle('active');
+            cartVisible = !cartVisible;
+        }
+
+        function addToCart(button) {
+            const productCard = button.parentElement;
+            const quantity = parseInt(productCard.querySelector('.quantity').value);
+            const product = {
+                id: button.dataset.id,
+                name: button.dataset.name,
+                price: parseFloat(button.dataset.price),
+                quantity: quantity
+            };
+
+            const existingItem = cart.find(item => item.id === product.id);
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push(product);
+            }
+
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const cartItemsElement = document.getElementById('cart-items');
+            const cartTotalElement = document.getElementById('cart-total');
+            const cartCountElement = document.getElementById('cart-count');
+
+            cartItemsElement.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.innerHTML = `
+                    <p>${item.name} x${item.quantity} - ₹${(item.price * item.quantity).toFixed(2)}</p>
+                `;
+                cartItemsElement.appendChild(itemElement);
+                total += item.price * item.quantity;
+            });
+
+            cartTotalElement.textContent = total.toFixed(2);
+            cartCountElement.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCartDisplay();
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            alert(`Thank you for your purchase! Total: ₹${total.toFixed(2)}`);
+            clearCart();
+            toggleCart();
+        }
+
+        function showTransportInfo() {
+            document.getElementById('transport-modal').style.display = 'block';
+        }
+
+        function closeTransportModal() {
+            document.getElementById('transport-modal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const fishModal = document.getElementById('fish-modal');
+            const transportModal = document.getElementById('transport-modal');
+            
+            if (event.target == fishModal) fishModal.style.display = 'none';
+            if (event.target == transportModal) transportModal.style.display = 'none';
+        }
+
+        initStore();
+    </script>
+<script>
+        // ... (keep products array and other variables unchanged) ...
+
+        function initStore() {
+            const container = document.getElementById('products-container');
+            container.innerHTML = '';
+            
+            // Create a sorted copy of products
+            const sortedProducts = [...products].sort((a, b) => a.name.localeCompare(b.name));
+            
+            sortedProducts.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p class="product-description">${product.description}</p>
+                    <p class="price">₹${product.price.toFixed(2)}</p>
+                    <input type="number" value="1" min="1" class="quantity">
+                    <button onclick="addToCart(this)" 
+                        data-id="${product.id}" 
+                        data-name="${product.name}" 
+                        data-price="${product.price}">Add to Cart</button>
+                `;
+                
+                card.querySelector('img').addEventListener('click', () => showModal(product));
+                card.querySelector('h3').addEventListener('click', () => showModal(product));
+                
+                container.appendChild(card);
+            });
+        }
+
+        function filterProducts() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const productCards = document.getElementsByClassName('product-card');
+            const clearBtn = document.getElementById('clear-search');
+            let foundCount = 0;
+
+            clearBtn.style.display = searchTerm ? 'block' : 'none';
+
+            // Create array of products with their original elements
+            const productArray = Array.from(productCards).map(card => ({
+                element: card,
+                name: card.querySelector('h3').textContent.toLowerCase()
+            }));
+
+            // Filter and sort
+            const filteredProducts = productArray
+                .filter(item => item.name.includes(searchTerm))
+                .sort((a, b) => a.name.localeCompare(b.name));
+
+            // Hide all cards first
+            Array.from(productCards).forEach(card => card.style.display = 'none');
+            
+            // Show filtered and sorted results
+            filteredProducts.forEach(item => {
+                item.element.style.display = 'block';
+                foundCount++;
+            });
+
+            document.getElementById('no-results').style.display = 
+                (foundCount === 0 && searchTerm !== '') ? 'block' : 'none';
+        }
+
+        function clearSearch() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('clear-search').style.display = 'none';
+            filterProducts();
+        }
+
+        // ... (keep rest of the code unchanged) ...
+</script>
+    <script>
+        // ... (existing JavaScript code) ... 
+
+        function filterProducts() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const clearBtn = document.getElementById('clear-search');
+            const productCards = document.getElementsByClassName('product-card');
+            let foundCount = 0;
+
+            // Show/hide clear button
+            clearBtn.style.display = searchTerm ? 'block' : 'none';
+
+            Array.from(productCards).forEach(card => {
+                const fishName = card.querySelector('h3').textContent.toLowerCase();
+                if(fishName.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    foundCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById('no-results').style.display = 
+                (foundCount === 0 && searchTerm !== '') ? 'block' : 'none';
+        }
+
+        function clearSearch() {
+            document.getElementById('search-input').value = '';
+            filterProducts();
+            document.getElementById('clear-search').style.display = 'none';
+        }
+
+        // ... (rest of JavaScript code remains same) ...
+    </script>
+
+
+</body>
+</html>

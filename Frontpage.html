@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neptune's Harvest | Modern Fish Market</title>
+    <style>
+        :root {
+            --ocean-deep: #00203F;
+            --aqua-bright: #00F3FF;
+            --coral: #FF6F61;
+            --sea-glass: #8FBC8F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--ocean-deep);
+            color: white;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(45deg, rgba(0,32,63,0.9), rgba(0,32,63,0.7)),
+                        url('https://media.istockphoto.com/id/470981381/photo/fresh-seafood.jpg?s=2048x2048&w=is&k=20&c=dqjnfjBc5ZABlwIcJkSjvtROJD2tXx-Ttr0ehshjbQg=') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('wave.svg') repeat-x;
+            animation: wave 10s linear infinite;
+        }
+
+        .floating-nav {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 1rem 2rem;
+            z-index: 100;
+        }
+
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+
+        .content-panel {
+            padding: 4rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .product-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, var(--aqua-bright), var(--sea-glass));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .parallax-section {
+            height: 60vh;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .eco-badge {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: var(--sea-glass);
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        @keyframes wave {
+            0% { background-position-x: 0; }
+            100% { background-position-x: 1000px; }
+        }
+
+        .cta-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="floating-nav">
+        <a href="file:///C:/Users/HP/Desktop/HTML%20college/catch.html" style="color: white; text-decoration: none; margin: 0 1rem;">Catch</a>
+        <a href="file:///C:/Users/HP/Desktop/HTML%20college/story.html" style="color: white; text-decoration: none; margin: 0 1rem;">Story</a>
+        <a href="file:///C:/Users/HP/Desktop/HTML%20college/visit.html" style="color: white; text-decoration: none; margin: 0 1rem;">Visit</a>
+    </nav>
+
+    <section class="hero">
+        <div class="eco-badge">🏆 Sustainable Fishing Certified</div>
+        <div>
+            <h1 style="font-size: 4rem; margin-bottom: 2rem;">
+                <span class="gradient-text">OCEAN TO TABLE</span>
+            </h1>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
+                Experience tomorrow's seafood market today
+            </p>
+<button class="cta-pulse" 
+        onclick="window.location.href='file:///C:/Users/HP/Desktop/HTML%20college/Home.html';"
+        style="margin-top: 3rem; padding: 1rem 3rem; 
+              background: var(--coral); border: none; border-radius: 30px;
+              color: white; font-size: 1.1rem; cursor: pointer;">
+    Book Fresh Catch
+</button>
+</div>
+    </section>
+
+    <section class="split-layout">
+        <div class="content-panel" style="background: rgba(0,0,0,0.3);">
+            <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Today's Premium Selection</h2>
+            <div class="product-card">
+                <h3>Bluefin Tuna</h3>
+                <p>Grade A+ Sashimi Quality</p>
+                <div style="margin-top: 1rem; color: var(--aqua-bright);">$29.99/lb</div>
+            </div>
+            <div class="product-card">
+                <h3>Alaskan King Crab</h3>
+                <p>Live from Cold Waters</p>
+                <div style="margin-top: 1rem; color: var(--aqua-bright);">$45.99/lb</div>
+            </div>
+        </div>
+        <div class="parallax-section" 
+             style="background-image: url('https://media.istockphoto.com/id/2183220406/photo/sailboat-sailing-in-sea-against-clear-sky.jpg?s=2048x2048&w=is&k=20&c=_z3KX-wGwkNigBlJw4MNmzw2kVwXqmjZAsdIdeXSmKU=');">
+        </div>
+    </section>
+
+    <section style="padding: 6rem; text-align: center;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Why Choose Neptune's</h2>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+        <div class="product-card">
+            <a href="file:///C:/Users/HP/Desktop/HTML%20college/directfromboat.html" 
+               style="color: white; text-decoration: none;">
+                <h3>🚢 Direct from Boat</h3>
+                <p>24hr freshness guarantee</p>
+            </a>
+        </div>
+        <div class="product-card">
+            <a href="file:///C:/Users/HP/Desktop/HTML%20college/eco.html" 
+               style="color: white; text-decoration: none;">
+                <h3>🌱 Eco-Conscious</h3>
+                <p>Sustainable fishing practices</p>
+            </a>
+        </div>
+        <div class="product-card">
+            <a href="file:///C:/Users/HP/Desktop/HTML%20college/chef-partnerships.html" 
+               style="color: white; text-decoration: none;">
+                <h3>🧑🍳 Chef Partnerships</h3>
+                <p>Premium quality assurance</p>
+            </a>
+        </div>
+    </div>
+</section>    <div class="parallax-section" 
+         style="background-image: url('https://media.istockphoto.com/id/520490716/photo/seafood-on-ice.jpg?s=2048x2048&w=is&k=20&c=cmeldNScnKZ5Obf9jWoZkI4OR7rHyYy4eR_Zn6OCnDo=');
+                height: 100vh; display: flex; align-items: center; justify-content: center;">
+        <div style="background: rgba(0,0,0,0.7); padding: 4rem; border-radius: 20px; text-align: center;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Seasonal Special</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Wild Scottish Salmon - Limited Stock</p>
+            <div style="font-size: 3rem; color: var(--coral);">$14.99/lb</div>
+            <div id="countdown" style="margin-top: 2rem; font-size: 1.5rem;"></div>
+        </div>
+    </div>
+
+</body>
+</html>
